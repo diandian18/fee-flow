@@ -111,7 +111,7 @@ cd /your/path/to/kafka_2.12-2.5.0
 ./kafka-console-consumer.sh --bootstrap-server=xxx.xxx.xxx.xxx:9092,yyy.yyy.yyy.yyy:9092,zzz.zzz.zzz.zzz:9092 --topic fee --from-beginning
 ```
 
-#### 查看某个topic消费情况
+#### 查看某个group消费情况
 
 ```bash
 ./kafka-consumer-groups.sh --bootstrap-server xxx.xxx.xxx.xxx:9092,yyy.yyy.yyy.yyy:9092,zzz.zzz.zzz.zzz:9092 --describe -group test-group

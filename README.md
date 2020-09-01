@@ -96,25 +96,25 @@ cd /your/path/to/kafka_2.12-2.5.0
 #### 查看topic列表
 
 ```bash
-./kafka-consumer-groups.sh --bootstrap-server 10.112.208.70:9092,10.112.208.209:9092,10.112.208.210:9092 --list
+./kafka-consumer-groups.sh --bootstrap-server xxx.xxx.xxx.xxx:9092,yyy.yyy.yyy.yyy:9092,zzz.zzz.zzz.zzz:9092 --list
 ```
 
 #### 生产消息
 
 ```bash
-./kafka-console-producer.sh --broker-list 10.112.208.70:9092,10.112.208.209:9092,10.112.208.210:9092 --topic fee
+./kafka-console-producer.sh --broker-list xxx.xxx.xxx.xxx:9092,yyy.yyy.yyy.yyy:9092,zzz.zzz.zzz.zzz:9092 --topic fee
 ```
 
 #### 消费消息
 
 ```bash
-./kafka-console-consumer.sh --bootstrap-server=10.112.208.70:9092,10.112.208.209:9092,10.112.208.210:9092 --topic fee --from-beginning
+./kafka-console-consumer.sh --bootstrap-server=xxx.xxx.xxx.xxx:9092,yyy.yyy.yyy.yyy:9092,zzz.zzz.zzz.zzz:9092 --topic fee --from-beginning
 ```
 
 #### 查看某个topic消费情况
 
 ```bash
-./kafka-consumer-groups.sh --bootstrap-server 10.112.208.70:9092,10.112.208.209:9092,10.112.208.210:9092 --describe -group test-group
+./kafka-consumer-groups.sh --bootstrap-server xxx.xxx.xxx.xxx:9092,yyy.yyy.yyy.yyy:9092,zzz.zzz.zzz.zzz:9092 --describe -group test-group
 ```
 
 #### 启动kafka
@@ -481,7 +481,7 @@ service filebeat stop
 ### 3.4 测试
 
 ```bash
-./kafka-console-consumer.sh --bootstrap-server=10.112.208.70:9092,10.112.208.209:9092,10.112.208.210:9092 --topic fee --from-beginning
+./kafka-console-consumer.sh --bootstrap-server=xxx.xxx.xxx.xxx:9092,yyy.yyy.yyy.yyy:9092,zzz.zzz.zzz.zzz:9092 --topic fee --from-beginning
 ```
 
 kafka接收到的消息内容：

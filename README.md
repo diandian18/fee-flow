@@ -6,7 +6,7 @@
 
 ### 架构图
 
-![Alt text](./assets/fee-flow.svg)
+![Alt text](./assets/fee-flow.png)
 
 ## 1. nginx
 

@@ -1,5 +1,7 @@
 # fee-flow
 
+fee的文档不是很清晰，所以整理了一下。
+
 ## fee介绍
 
 > [fee（灯塔）](https://github.com/LianjiaTech/fee) 是前端监控系统，贝壳找房主要前端监控系统，服务公司上百条产品线。 特点：架构简单、轻量、支持私有化部署。可收集前端设备、系统、环境信息， 可以对前端页面js报错、资源错误、性能指标进行配置报警等， 并且可以通过上报错误信息引导用户快速定位解决问题。
@@ -582,75 +584,84 @@ yum -y install gcc+ gcc-c++ zlib-devel
 
 1. 配置`server/src/configs/common.js`
 
-```js
-const production = {
-  use: {
-    kafka: true, // 是否使用kafka。如果没有kafka，设为false，并且指定下面的nginxLogFilePath
-  }
-  // ...
-}
-```
+    ```js
+    const production = {
+        use: {
+            kafka: true, // 是否使用kafka。如果没有kafka，设为false，并且指定下面的nginxLogFilePath
+        }
+        // ...
+    }
+    ```
 
 2. 配置`server/src/configs/kafka.js`
 
-```js
-const production = {
-  'group.id': 'fee',
-  'metadata.broker.list': 'xxx.xxx.xxx.xxx:9092, yyy.yyy.yyy.yyy:9092, zzz.zzz.zzz.zzz:9092',
-}
-```
+    ```js
+    const production = {
+        'group.id': 'fee',
+        'metadata.broker.list': 'xxx.xxx.xxx.xxx:9092, yyy.yyy.yyy.yyy:9092, zzz.zzz.zzz.zzz:9092',
+    }
+    ```
 
 3. 配置`server/src/configs/mysql.js`
 
-```js
-// 测试环境配置
-const production = {
-  host: 'xxx.com',
-  port: '3306',
-  user: 'xxx',
-  password: 'xxx',
-  database: 'fee'
-}
-```
+    ```js
+    const production = {
+        host: 'xxx.com',
+        port: '3306',
+        user: 'xxx',
+        password: 'xxx',
+        database: 'fee'
+    }
+    ```
 
 4. 配置`server/src/configs/redis.js`
 
-```js
-const production = {
-  host: 'xxx.com',
-  port: '6379',
-  db: '4',
-  password: 'xxx'
-}
-```
+    ```js
+    const production = {
+        host: 'xxx.com',
+        port: '6379',
+        db: '4',
+        password: 'xxx'
+    }
+    ```
 
 5. 配置`server/src/library/redis/index.js`
 
-```js
-class RedisClient {
-  constructor (isTest = false) {
-    this.redisClient = new Redis({
-      // ...
-      password: redisConfig.password,
-```
+    ```js
+    class RedisClient {
+    constructor (isTest = false) {
+        this.redisClient = new Redis({
+        // ...
+        password: redisConfig.password,
+    ```
 
 6. 修改`server/src/app.js`
 
-```js
-const app = express()
-  // 设置存放模板引擎目录
-  app.set('views', path.join(__dirname, '../public'))
-  // 设置模板引擎为ejs
-  // app.set('view engine', 'ejs')
-  app.engine('html', ejs.renderFile)
-  app.set('view engine', 'html')
-```
+    ```js
+    const app = express()
+    // 设置存放模板引擎目录
+    app.set('views', path.join(__dirname, '../public'))
+    // 设置模板引擎为ejs
+    // app.set('view engine', 'ejs')
+    app.engine('html', ejs.renderFile)
+    app.set('view engine', 'html')
+    ```
 
 7. 修改`server/bin/run.sh`
 
-```shell
-FEE_COMMAND="Task:Manager" # 上线时直接把它改成Task:Manager即可
-```
+    ```shell
+    FEE_COMMAND="Task:Manager" # 上线时直接把它改成Task:Manager即可
+    ```
+
+8. 修改`server/src/commands/save_log/parseKafkaLog.js`
+
+    ```js
+    // 适配filebeat
+    if (content.includes('@timestamp') && content.includes('@metadata')) {
+        const dataObj = JSON.parse(content);
+        content = dataObj.message || '';
+    }
+    ```
 
 ### 5.3 启动server
 

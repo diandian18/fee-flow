@@ -1,6 +1,6 @@
 # fee-flow
 
-fee的文档不是很清晰，直接照着文档和代码，恐怕项目还跑不起来，所以整理了一下。
+fee的文档不是很清晰和全面，直接照着文档和代码，恐怕项目还很难跑起来，所以整理了一下，可以确保这个项目能顺利运行。
 
 ## fee介绍
 
@@ -121,14 +121,6 @@ cd /your/path/to/kafka_2.12-2.5.0
 
 ```bash
 ./bin/kafka-server-start.sh ./config/server.properties &
-```
-
-#### 阿里云预发布kafka地址
-
-```bash
-xxx.xxx.xxx.xxx
-yyy.yyy.yyy.yyy
-zzz.zzz.zzz.zzz
 ```
 
 #### 参考文档
